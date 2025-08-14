@@ -4,8 +4,8 @@ import Providers from "@/lib/Providers";
 
 
 export const metadata: Metadata = {
-  title: "Web Page",
-  description: "Web Page",
+  title: 'Rick and Morty App',
+  description: 'Browse Rick and Morty characters',
 };
 
 export default function RootLayout({

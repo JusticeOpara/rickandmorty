@@ -1,10 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
-import { apiSlice,  generalSlice } from "./";
+import { apiSlice,  favoritesSlice,  generalSlice } from "./";
 
 export const store = configureStore({
   reducer: {
     general: generalSlice,
+    favorites: favoritesSlice,
     [apiSlice.reducerPath]: apiSlice.reducer,
   },
   devTools: process.env.NODE_ENV !== "production",

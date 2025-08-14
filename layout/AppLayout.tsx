@@ -1,3 +1,4 @@
+
 import React, { ReactNode } from "react";
 import {
   RightNavigationBar,
@@ -8,24 +9,29 @@ import {
 const AppLayout: React.FC<{
   children: ReactNode;
 }> = ({ children }) => {
+  
   return (
-    <main className="flex min-h-screen bg-[#0F1117] text-white">
-      <aside className="w-64 border-r border-gray-800 bg-[#141820]">
+    <main className="flex h-screen bg-[#0F1117] text-white">
+   
+      <aside className="w-64 border-r border-gray-800 bg-[#141820] flex-shrink-0">
         <LeftNavigationBar />
       </aside>
 
-      <div className="flex flex-col flex-1">
-        <TopNavigationBar />
 
-        {/* Scrollable content */}
-        <div className="flex flex-1 overflow-hidden">
-          <section className="flex-1 overflow-y-auto p-6">{children}</section>
-
-          <aside className="w-72 border-l border-gray-800 bg-[#141820]">
-            <RightNavigationBar />
-          </aside>
+      <div className="flex flex-col flex-1 min-h-0">
+    
+        <div className="sticky top-0 z-10 bg-[#0F1117]">
+          <TopNavigationBar  />
         </div>
+
+ 
+        <section className="flex-1 overflow-y-auto p-6">{children}</section>
       </div>
+
+
+      <aside className="w-64 border-l border-gray-800 bg-[#141820] flex-shrink-0">
+        <RightNavigationBar />
+      </aside>
     </main>
   );
 };

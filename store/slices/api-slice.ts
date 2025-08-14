@@ -16,7 +16,7 @@ export const apiSlice = createApi({
       return headers;
     },
   }) as BaseQueryFn<string | FetchArgs, unknown, object>,
-  tagTypes: ["Pokemon"],
+  tagTypes: ["RickAndMorty"],
   endpoints: () => ({}),
 });
 

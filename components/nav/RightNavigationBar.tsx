@@ -3,7 +3,7 @@ import React from 'react'
 const RightNavigationBar: React.FC = () => {
 
   return (
-   <div className="p-4 space-y-6 h-full w-full">
+   <div className="p-4 space-y-6 h-screen w-full bg-slate-800">
       <div className="flex items-center space-x-3">
         <div className="w-10 h-10 rounded-full bg-gray-600"></div>
         <div>
