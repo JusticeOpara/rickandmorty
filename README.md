@@ -1,4 +1,4 @@
-# Resource Explorer
+# Rick and Morty
 
 A single-page React (Next.js + TypeScript) application that allows users to explore data from a public API with search, filter, sort, and favorites functionality.  
 Built for the **React Challenge** within a 24-hour timebox.
@@ -7,14 +7,15 @@ Built for the **React Challenge** within a 24-hour timebox.
 
 ## 🚀 Demo
 
-- **Live Preview**: [View on Vercel](#) _(optional if deployed)_
-- **GitHub Repository**: [Repository Link](#)
+- **Live Preview**: [rickandmorty-neon-eta.vercel.app](optional if deployed)_
+- **GitHub Repository**: [https://github.com/JusticeOpara/rickandmorty](https://github.com/JusticeOpara/rickandmorty)
 
 ---
 
 ## 📌 Features
 
 ### Must-Haves Implemented
+
 - **List + Detail View**:
   - Paginated list view of items from the chosen API.
   - Click an item to open a dedicated detail route (`/items/:id`).
@@ -33,6 +34,7 @@ Built for the **React Challenge** within a 24-hour timebox.
   - Cancel in-flight requests on input changes to prevent race conditions.
 
 ### Nice-to-Haves Implemented
+
 - **Client caching** with React Query for instant back/forward navigation.
 - **Optimistic UI** for favoriting actions.
 - **Theme toggle** (light/dark) persisted in `localStorage`.
