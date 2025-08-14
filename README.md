@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Resource Explorer
 
-## Getting Started
+A single-page React (Next.js + TypeScript) application that allows users to explore data from a public API with search, filter, sort, and favorites functionality.  
+Built for the **React Challenge** within a 24-hour timebox.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Demo
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Live Preview**: [View on Vercel](#) _(optional if deployed)_
+- **GitHub Repository**: [Repository Link](#)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📌 Features
 
-## Learn More
+### Must-Haves Implemented
+- **List + Detail View**:
+  - Paginated list view of items from the chosen API.
+  - Click an item to open a dedicated detail route (`/items/:id`).
+- **Search, Filter, Sort**:
+  - Debounced search (300ms) synced to the URL (`?q=query`).
+  - Filter by status/species/type (depending on dataset).
+  - Sort items by name, status, or other criteria.
+  - All state is URL-driven for shareability and reload safety.
+- **Favorites**:
+  - Toggle favorites from list and detail views.
+  - Persist favorites in `localStorage`.
+  - "Favorites" filter to quickly view saved items.
+- **Data Handling**:
+  - Loading skeletons.
+  - Error boundaries with retry support.
+  - Cancel in-flight requests on input changes to prevent race conditions.
 
-To learn more about Next.js, take a look at the following resources:
+### Nice-to-Haves Implemented
+- **Client caching** with React Query for instant back/forward navigation.
+- **Optimistic UI** for favoriting actions.
+- **Theme toggle** (light/dark) persisted in `localStorage`.
+- **Code splitting** for the detail route.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🛠 Tech Stack
 
-## Deploy on Vercel
+- **Framework**: [Next.js](https://nextjs.org/) + [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Data Fetching & Caching**: [React Query](https://tanstack.com/query)
+- **Routing & URL State Management**: Next.js Router
+- **UI Components**: Custom + Tailwind utilities
+- **Persistence**: localStorage
+- **Deployment**: [Vercel](https://vercel.com/) _(optional)_
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📂 Project Structure
+
