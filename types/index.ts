@@ -46,6 +46,7 @@ interface IEpisode {
   url: string;
   created: string;
 }
+type ISortOption = 'all' | 'female' | 'male' | 'genderless' | 'unknown';
 
 export type {
   ICharacterAPIResponse,
@@ -53,4 +54,5 @@ export type {
   ICharacter,
   ICharacterLocation,
   IEpisodeAPIResponse,
+  ISortOption
 };

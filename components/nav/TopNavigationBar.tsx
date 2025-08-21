@@ -9,13 +9,13 @@ const TopNavigationBar: React.FC = () => {
       <div className="flex items-center justify-between">
         {/* Navigation Tabs */}
         <div className="flex items-center space-x-8">
-          <h1 className="text-3xl font-bold text-white">
+          <h1 className="lg:text-3xl font-bold text-white">
             Rick and Morty Characters & Episodes
           </h1>
         </div>
 
         <div className="flex items-center space-x-4">
-          <button className="p-2 text-gray-400 hover:text-white">
+          <button className="p-2 text-gray-400 hover:text-white lg:hidden block">
             <Filter size={20} />
           </button>
         </div>

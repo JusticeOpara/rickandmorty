@@ -48,8 +48,7 @@ const LeftNavigationBar: React.FC = () => {
 
           <MenuItem icon={<Home size={20} />} label="Home" isActive={true} />
           <MenuItem icon={<Compass size={20} />} label="Discover" />
-          <MenuItem icon={<Award size={20} />} label="Awards" />
-          <MenuItem icon={<Users size={20} />} label="Celebrities" />
+
         </div>
 
         <div className="py-6">
@@ -57,12 +56,10 @@ const LeftNavigationBar: React.FC = () => {
             Library
           </h3>
 
-          <MenuItem icon={<Clock size={20} />} label="Recent" />
           <MenuItem icon={<Star size={20} />} label="Top Rated" />
-          <MenuItem icon={<Download size={20} />} label="Downloaded" />
-          <MenuItem icon={<Heart size={20} />} label="Playlists" />
-          <MenuItem icon={<Plus size={20} />} label="Watchlist" />
-          <MenuItem icon={<Check size={20} />} label="Completed" />
+        
+          <MenuItem icon={<Heart size={20} />} label="Favourite" />
+   
         </div>
 
         <div className="py-6">
