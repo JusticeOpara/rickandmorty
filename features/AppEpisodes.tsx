@@ -1,52 +1,51 @@
 "use client";
 
 import { Card, Dropdown, Pagination } from "@/components/ui";
-import React, { useMemo, useState } from "react";
-import { useGetRickAndMortyPaginatedQuery } from "@/services/rickandmortyService";
+import { useMemo, useState } from "react";
+import { useGetRickAndMortyEpisodesPaginatedQuery } from "@/services/rickandmortyService";
 import SearchBar from "@/components/ui/SearchBar";
 import ErrorWithRetry from "@/components/common/ErrorWithRetry";
 import { ISortOption } from "@/types";
 import { getRickAndMortyErrorMessage } from "@/utils/errorMessage";
 
-const AppDashboard = () => {
+const AppEpisodes: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedSort, setSelectedSort] = useState<ISortOption>('all');
+  const [selectedSort, setSelectedSort] = useState<ISortOption>("all");
 
   const {
-    data: rickandmortyData,
+    data: rickandmortyEpisodes,
     isLoading,
     isError,
     error,
     refetch,
-  } = useGetRickAndMortyPaginatedQuery(currentPage, {
+  } = useGetRickAndMortyEpisodesPaginatedQuery(currentPage, {
     refetchOnFocus: false,
     refetchOnReconnect: false,
   });
 
-  // Filter and sort characters
-  const charactersToDisplay = useMemo(() => {
-    let characters = rickandmortyData?.results;
+  // Filter episodes
+  const episodesToDisplay = useMemo(() => {
+    let episodes = rickandmortyEpisodes?.results;
 
-    // Apply gender filter
-    if (characters && selectedSort !== 'all') {
-      characters = characters.filter(
-        (character) => character.gender.toLowerCase() === selectedSort
+    // Apply filter based on selectedSort
+    // Note: Episodes don't have a gender property, so you might want to change this
+    // to filter by a different property that episodes have
+    if (episodes && selectedSort !== "all") {
+      episodes = episodes.filter(
+        (episode) => episode.gender.toLowerCase() === selectedSort
       );
     }
 
-    return characters;
-  }, [rickandmortyData?.results, selectedSort]);
+    return episodes;
+  }, [rickandmortyEpisodes?.results, selectedSort]);
 
   if (isLoading) return <div>Loading...</div>;
 
   if (isError) {
     return (
       <div className="bg-[#0F1117] p-8 min-h-screen flex items-center justify-center">
-        <ErrorWithRetry 
-          message={getRickAndMortyErrorMessage(error)} 
-          onRetry={refetch} 
-        />
+        <ErrorWithRetry message={getRickAndMortyErrorMessage(error)} onRetry={refetch} />
       </div>
     );
   }
@@ -69,24 +68,24 @@ const AppDashboard = () => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {charactersToDisplay?.map((data) => (
-            <Card
-              key={data.id}
-              id={data.id}
-              title={data.name}
-              date={data.created}
-              posterUrl={data.image}
-              status={data.status}
-              gender={data.gender}
-            />
+          {episodesToDisplay?.map((episode) => (
+             <Card
+                          key={episode.id}
+                          id={episode.id}
+                          title={episode.name}
+                          date={episode.created}
+                          posterUrl={episode.image}
+                          status={episode.status}
+                          gender={episode.gender}
+                        />
           ))}
         </div>
 
         <div className="mt-6">
-          {rickandmortyData?.info && (
+          {rickandmortyEpisodes?.info && (
             <Pagination
               currentPage={currentPage}
-              totalPages={rickandmortyData.info.pages}
+              totalPages={rickandmortyEpisodes.info.pages}
               onPageChange={setCurrentPage}
             />
           )}
@@ -96,4 +95,4 @@ const AppDashboard = () => {
   );
 };
 
-export default AppDashboard;
+export default AppEpisodes;

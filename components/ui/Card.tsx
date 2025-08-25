@@ -35,7 +35,7 @@ const Card: React.FC<MovieCardProps> = ({
     dispatch(toggleFavorite(id));
   };
   return (
-    <div className="h-96 bg-gray-900 rounded-xl overflow-hidden shadow-2xl relative">
+    <div className="h-96 w-full rounded-xl overflow-hidden shadow-2xl relative">
       <div className="w-full h-full relative">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"

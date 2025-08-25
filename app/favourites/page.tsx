@@ -1,10 +1,11 @@
 
+import { AppFavourite } from "@/features";
 import { AppLayout } from "@/layout";
 
 export default function Favourite() {
   return (
     <AppLayout>
-     Favourite Page
+      <AppFavourite/>
     </AppLayout>
   );
 }

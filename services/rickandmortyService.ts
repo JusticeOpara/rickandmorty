@@ -5,7 +5,7 @@ import { ICharacterAPIResponse } from "@/types";
 
 export const rickandmortyApiService = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getRickAndMorty: builder.query({
+    getAllRickAndMortyCharacters: builder.query({
       query: () => ({
         url: endpoints.all_rickandmorty_character,
         method: REQUEST_METHODS.GET
@@ -33,7 +33,7 @@ export const rickandmortyApiService = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useGetRickAndMortyQuery ,
+export const { useGetAllRickAndMortyCharactersQuery,
   useGetRickAndMortyPaginatedQuery,
   useGetRickAndMortyEpisodesPaginatedQuery,
   useGetCharacterByIdQuery} = rickandmortyApiService;

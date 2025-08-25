@@ -27,6 +27,7 @@ const Dropdown: React.FC<DropdownProps> = ({
 }) => {
   return (
     <div className="relative">
+      
       <select
         value={selectedSort}
         onChange={(e) => onSortChange(e.target.value as ISortOption)}
