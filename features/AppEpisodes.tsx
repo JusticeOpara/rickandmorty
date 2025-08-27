@@ -23,7 +23,7 @@ const AppEpisodes: React.FC = () => {
     refetchOnFocus: false,
     refetchOnReconnect: false,
   });
-
+console.log(rickandmortyEpisodes,"rickandmortyEpisodes")
   // Filter episodes
   const episodesToDisplay = useMemo(() => {
     let episodes = rickandmortyEpisodes?.results;
@@ -45,13 +45,16 @@ const AppEpisodes: React.FC = () => {
   if (isError) {
     return (
       <div className="bg-[#0F1117] p-8 min-h-screen flex items-center justify-center">
-        <ErrorWithRetry message={getRickAndMortyErrorMessage(error)} onRetry={refetch} />
+        <ErrorWithRetry
+          message={getRickAndMortyErrorMessage(error)}
+          onRetry={refetch}
+        />
       </div>
     );
   }
 
   return (
-    <div className="bg-[#0F1117] p-8 min-h-screen">
+    <div className="bg-red-500 p-8 min-h-screen">
       <div className="max-w-7xl mx-auto">
         <div className="flex gap-4 justify-end items-center mb-8">
           <SearchBar
@@ -67,19 +70,19 @@ const AppEpisodes: React.FC = () => {
           />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6 ">
           {episodesToDisplay?.map((episode) => (
-             <Card
-                          key={episode.id}
-                          id={episode.id}
-                          title={episode.name}
-                          date={episode.created}
-                          posterUrl={episode.image}
-                          status={episode.status}
-                          gender={episode.gender}
-                        />
+            <Card
+              key={episode.id}
+              id={episode.id}
+              title={episode.name}
+              date={episode.created}
+              posterUrl={episode.image}
+              status={episode.status}
+              gender={episode.gender}
+            />
           ))}
-        </div>
+         </div> 
 
         <div className="mt-6">
           {rickandmortyEpisodes?.info && (

@@ -10,7 +10,7 @@ const TopNavigationBar: React.FC = () => {
         {/* Navigation Tabs */}
         <div className="flex items-center space-x-8">
           <h1 className="lg:text-3xl font-bold text-white">
-            Rick and Morty Characters & Episodes
+            Rick and Morty Wiki
           </h1>
         </div>
 

@@ -36,7 +36,7 @@ const Card: React.FC<MovieCardProps> = ({
   };
   return (
     <div className="h-96 w-full rounded-xl overflow-hidden shadow-2xl relative">
-      <div className="w-full h-full relative">
+
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
@@ -96,7 +96,7 @@ const Card: React.FC<MovieCardProps> = ({
             </span>
           </div>
         </div>
-      </div>
+   
     </div>
   );
 };
