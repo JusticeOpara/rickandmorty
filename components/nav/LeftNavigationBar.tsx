@@ -1,19 +1,16 @@
-"use client"
-
+"use client";
 
 import React from "react";
 import Link from "next/link";
 import {
   Home,
-  Clock,
   Star,
-  Download,
   Heart,
   Settings,
   Info,
-  AlarmClock,
   Users,
   Bookmark,
+  LocateIcon,
 } from "lucide-react";
 import { usePathname } from "next/navigation";
 
@@ -24,62 +21,59 @@ interface MenuItemProps {
   isActive?: boolean;
 }
 
-const MenuItem: React.FC<MenuItemProps> = ({
-  icon,
-  label,
-  href,
-  isActive ,
-}) => (
+const MenuItem: React.FC<MenuItemProps> = ({ icon, label, href, isActive }) => (
   <Link href={href} passHref>
     <div
-      className={`flex items-center space-x-3 px-4 py-3 cursor-pointer transition-colors ${
-        isActive ? "text-teal-400" : "text-gray-300 hover:text-white"
+      className={`flex items-center space-x-3  px-4 py-3 cursor-pointer transition-colors ${
+        isActive ? "" : "text-gray-300 hover:text-white"
       }`}
     >
-      {icon}
-      <span className="text-sm font-medium">{label}</span>
+      <span className={`${isActive ? "text-[#881326] " : ""}`}>{icon}</span>
+      <span className="text-base font-light">{label}</span>
     </div>
   </Link>
 );
 
 const LeftNavigationBar: React.FC = () => {
-    const pathname = usePathname();
+  const pathname = usePathname();
+  
   return (
-    <div className="w-full h-screen bg-slate-800 flex flex-col">
-      <div className="p-6 border-b border-teal-400 border-dashed">
-        <h1 className="text-white text-2xl font-bold">Rick & Morty Wiki</h1>
-      </div>
-
-      <div className="flex-1 overflow-y-auto">
+    <div className="w-full h-screen bg-[#1A161F] flex flex-col">
+      <div className="flex-1 mt-20 overflow-y-auto">
         <div className="py-6 pl-4">
           <h3 className="text-gray-400 text-sm font-medium px-4 mb-4">Menu</h3>
 
-          <MenuItem 
-            icon={<Home size={20} />} 
-            label="Home" 
-            href="/" 
+          <MenuItem
+            icon={
+              <Home size={20} fill={pathname === "/" ? "#881326" : "none"} />
+            }
+            label="Home"
+            href="/"
             isActive={pathname === "/"}
           />
 
-          <MenuItem 
-            icon={<Heart size={20} />} 
-            label="Favourite" 
-            href="/favourites"
-            isActive={pathname === "/favourites"} 
+          <MenuItem
+            icon={
+              <Users
+                size={20}
+                fill={pathname === "/episodes" ? "#881326" : "none"}
+              />
+            }
+            label="Episodes"
+            href="/episodes"
+            isActive={pathname === "/episodes"}
           />
 
-          <MenuItem 
-            icon={<Users size={20} />} 
-            label="Episodes" 
-            href="/episodes" 
-              isActive={pathname === "/episodes"}
-          />
-
-          <MenuItem 
-            icon={<AlarmClock size={20} />} 
-            label="Coming soon" 
-            href="/coming-soon"
-              isActive={pathname === "/coming-soon"} 
+          <MenuItem
+            icon={
+              <LocateIcon
+                size={20}
+                fill={pathname === "/location" ? "#881326" : "none"}
+              />
+            }
+            label="Locations"
+            href="/locations"
+            isActive={pathname === "/location"}
           />
         </div>
 
@@ -88,48 +82,66 @@ const LeftNavigationBar: React.FC = () => {
             Library
           </h3>
 
-          <MenuItem 
-            icon={<Clock size={20} />} 
-            label="Recent" 
-            href="/recent" 
-              isActive={pathname === "/recent"}
-          />
-        
-          <MenuItem 
-            icon={<Bookmark size={20} />} 
-            label="Bookmarked" 
-            href="/bookmarked" 
-              isActive={pathname === "/bookmarked"}
+          <MenuItem
+            icon={
+              <Heart
+                size={20}
+                fill={pathname === "/favourites" ? "#881326" : "none"}
+              />
+            }
+            label="Favourite"
+            href="/favourites"
+            isActive={pathname === "/favourites"}
           />
 
-          <MenuItem 
-            icon={<Star size={20} />} 
-            label="Top rated" 
-            href="/" 
-              isActive={pathname === "/"}
+          <MenuItem
+            icon={
+              <Bookmark
+                size={20}
+                fill={pathname === "/bookmarked" ? "#881326" : "none"}
+              />
+            }
+            label="Bookmarked"
+            href="/bookmarked"
+            isActive={pathname === "/bookmarked"}
           />
 
-          <MenuItem 
-            icon={<Download size={20} />} 
-            label="Downloaded" 
-            href="/"
-              isActive={pathname === "/"} 
+          <MenuItem
+            icon={
+              <Star
+                size={20}
+                fill={pathname === "/rating" ? "#881326" : "none"}
+              />
+            }
+            label="Top rated"
+            href="/rating"
+            isActive={pathname === "/rating"}
           />
         </div>
 
         <div className="py-6 pl-4">
-          <MenuItem 
-            icon={<Settings size={20} />} 
-            label="Settings" 
-            href="/" 
-              isActive={pathname === "/"}
+          <MenuItem
+            icon={
+              <Settings
+                size={20}
+                fill={pathname === "/setting" ? "#881326" : "none"}
+              />
+            }
+            label="Settings"
+            href="/settings"
+            isActive={pathname === "/settings"}
           />
-        
-          <MenuItem 
-            icon={<Info size={20} />} 
-            label="Help" 
-            href="/" 
-              isActive={pathname === "/"}
+
+          <MenuItem
+            icon={
+              <Info
+                size={20}
+                fill={pathname === "/help" ? "#881326" : "none"}
+              />
+            }
+            label="Help"
+            href="/help"
+            isActive={pathname === "/help"}
           />
         </div>
       </div>

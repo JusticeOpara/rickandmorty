@@ -1,9 +1,15 @@
 import React from 'react'
+import { thrones } from '@/public/assets'
+import Image from 'next/image'
 
 const RightNavigationBar: React.FC = () => {
 
   return (
-   <div className="p-4 space-y-6 h-screen w-full bg-slate-800">
+   <div className="p-4 space-y-6 h-screen w-full bg-[#1A161F]">
+
+    <div>
+      <Image className="" src={thrones} alt='pics'/>
+    </div>
       <div className="flex items-center space-x-3">
         <div className="w-10 h-10 rounded-full bg-gray-600"></div>
         <div>
@@ -22,15 +28,6 @@ const RightNavigationBar: React.FC = () => {
         </div>
       </section>
 
-      <section>
-        <h4 className="font-semibold mb-2">Top Rated</h4>
-        {/* Items */}
-      </section>
-
-      <section>
-        <h4 className="font-semibold mb-2">Genres</h4>
-        {/* Genre grid */}
-      </section>
     </div>
   )
 }

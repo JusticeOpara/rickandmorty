@@ -22,14 +22,13 @@ interface ICharacter {
   image: string;
   episode: string[];
   url: string;
-  created: string; 
+  created: string;
 }
 
 interface ICharacterLocation {
   name: string;
   url: string;
 }
-
 
 //Episodes
 interface IEpisodeAPIResponse {
@@ -46,7 +45,22 @@ interface IEpisode {
   url: string;
   created: string;
 }
-type ISortOption = 'all' | 'female' | 'male' | 'genderless' | 'unknown';
+
+interface ILocationAPIResponse {
+  info: IPaginationInfo;
+  results: ILocation[];
+}
+interface ILocation {
+  id: number;
+  name: string;
+  type: string;
+  dimension: string;
+  residents: string[];
+  url: string;
+  created: string;
+}
+
+type ISortOption = "all" | "female" | "male" | "genderless" | "unknown";
 
 export type {
   ICharacterAPIResponse,
@@ -54,5 +68,8 @@ export type {
   ICharacter,
   ICharacterLocation,
   IEpisodeAPIResponse,
-  ISortOption
+  ISortOption,
+  ILocation,
+  ILocationAPIResponse,
+  IEpisode
 };

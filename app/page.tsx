@@ -1,10 +1,10 @@
-import AppDashboard from "@/features/AppDashboard";
+import AppCharacters from "@/features/AppCharacters";
 import { AppLayout } from "@/layout";
 
 export default function Home() {
   return (
     <AppLayout>
-      <AppDashboard />
+      <AppCharacters />
     </AppLayout>
   );
 }

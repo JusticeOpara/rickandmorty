@@ -14,7 +14,7 @@ const ErrorWithRetry: React.FC<ErrorWithRetryProps> = ({ message, onRetry }) => 
       <button 
         onClick={onRetry}
        
-        className="text-white border-white hover:bg-gray-700"
+        className="text-white  border-white border-1 px-4 py-1 rounded-lg hover:bg-gray-700"
       >
         Retry
       </button>

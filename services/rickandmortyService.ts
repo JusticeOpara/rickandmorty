@@ -1,39 +1,53 @@
 import { endpoints } from "@/utils";
 import { REQUEST_METHODS } from "@/contants";
 import { apiSlice } from "@/store";
-import { ICharacterAPIResponse } from "@/types";
+import { ICharacterAPIResponse, IEpisodeAPIResponse, ILocationAPIResponse } from "@/types";
 
 export const rickandmortyApiService = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getAllRickAndMortyCharacters: builder.query({
       query: () => ({
         url: endpoints.all_rickandmorty_character,
-        method: REQUEST_METHODS.GET
+        method: REQUEST_METHODS.GET,
       }),
       transformResponse: (response: ICharacterAPIResponse) => response,
     }),
-     getRickAndMortyPaginated: builder.query<ICharacterAPIResponse, number>({
+    getCharacterWithPagination: builder.query<ICharacterAPIResponse, number>({
       query: (page) => ({
         url: endpoints.all_rickandmorty_character_paginated(page),
-        method: REQUEST_METHODS.GET
+        method: REQUEST_METHODS.GET,
       }),
       transformResponse: (response: ICharacterAPIResponse) => response,
     }),
-      getRickAndMortyEpisodesPaginated: builder.query<ICharacterAPIResponse, number>({
+    getLocationWithPagination: builder.query<ILocationAPIResponse, number>({
       query: (page) => ({
-        url: endpoints.all_rickandmorty_episodes_paginated(page),
-        method: REQUEST_METHODS.GET
+        url: endpoints.all_locations_paginatied(page),
+        method: REQUEST_METHODS.GET,
       }),
-      transformResponse: (response: ICharacterAPIResponse) => response,
+      transformResponse: (response: ILocationAPIResponse) => response,
     }),
     
+    getEpisodeWithPagination: builder.query({
+      query: (page) => ({
+        url: endpoints.all_episodes_paginated(page),
+        method: REQUEST_METHODS.GET,
+      }),
+      transformResponse: (response: IEpisodeAPIResponse) => response,
+    }),
+
     getCharacterById: builder.query({
-      query: (id) => `${endpoints.rickandmorty_single_character}/${id}`,
+      query: (id) => `${endpoints.single_character}/${id}`,
+    }),
+    getEpisodesById: builder.query({
+      query: (id) => `${endpoints.single_episode}/${id}`,
     }),
   }),
 });
 
-export const { useGetAllRickAndMortyCharactersQuery,
-  useGetRickAndMortyPaginatedQuery,
-  useGetRickAndMortyEpisodesPaginatedQuery,
-  useGetCharacterByIdQuery} = rickandmortyApiService;
+export const {
+  useGetAllRickAndMortyCharactersQuery,
+  useGetCharacterWithPaginationQuery,
+  useGetLocationWithPaginationQuery,
+  useGetEpisodeWithPaginationQuery,
+  useGetCharacterByIdQuery,
+} = rickandmortyApiService;

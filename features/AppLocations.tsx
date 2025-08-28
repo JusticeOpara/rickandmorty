@@ -1,40 +1,39 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useGetEpisodeWithPaginationQuery } from "@/services/rickandmortyService";
 import ErrorWithRetry from "@/components/common/ErrorWithRetry";
+import { useGetLocationWithPaginationQuery } from "@/services/rickandmortyService";
+import { ILocation } from "@/types";
 import { getRickAndMortyErrorMessage } from "@/utils/errorMessage";
-import { IEpisode } from "@/types";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 
-const AppEpisodes: React.FC = () => {
-  const loaderRef = useRef<HTMLDivElement | null>(null);
-  const [allEpisode, setAllEpisode] = useState<IEpisode[]>([]);
+const AppLocations: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
-
+  const loaderRef = useRef<HTMLDivElement | null>(null);
+  const [allLocation, setAllLocation] = useState<ILocation[]>([]);
   const {
-    data: rickandmortyEpisodes,
+    data: rickandmortyLocations,
     isLoading,
     isFetching,
     isError,
     error,
     refetch,
-  } = useGetEpisodeWithPaginationQuery(currentPage,{
+  } = useGetLocationWithPaginationQuery(currentPage, {
     refetchOnFocus: false,
     refetchOnReconnect: false,
   });
 
   useEffect(() => {
-    if (rickandmortyEpisodes?.results) {
-      setAllEpisode((prev) => {
+    if (rickandmortyLocations?.results) {
+      setAllLocation((prev) => {
         // Avoid duplicates when refetch triggers
-        const newOnes = rickandmortyEpisodes.results.filter(
+        const newOnes = rickandmortyLocations.results.filter(
           (ch) => !prev.some((p) => p.id === ch.id)
         );
         return [...prev, ...newOnes];
       });
     }
-  }, [rickandmortyEpisodes]);
+  }, [rickandmortyLocations]);
 
   const handleObserver = useCallback(
     (entries: IntersectionObserverEntry[]) => {
@@ -42,12 +41,12 @@ const AppEpisodes: React.FC = () => {
       if (
         target.isIntersecting &&
         !isFetching &&
-        rickandmortyEpisodes?.info?.next
+        rickandmortyLocations?.info?.next
       ) {
         setCurrentPage((prev) => prev + 1);
       }
     },
-    [isFetching, rickandmortyEpisodes]
+    [isFetching, rickandmortyLocations]
   );
 
   useEffect(() => {
@@ -60,11 +59,10 @@ const AppEpisodes: React.FC = () => {
     };
   }, [handleObserver]);
 
-  const episodesToDisplay = useMemo(() => {
-    const episodes = rickandmortyEpisodes?.results;
-
+  const locationToDisplay = useMemo(() => {
+    const episodes = rickandmortyLocations?.results;
     return episodes;
-  }, [rickandmortyEpisodes?.results]);
+  }, [rickandmortyLocations?.results]);
 
   if (isError) {
     return (
@@ -79,9 +77,10 @@ const AppEpisodes: React.FC = () => {
 
   return (
     <div className="bg-black text-white min-h-screen p-6">
-      <h2 className="text-2xl font-bold mb-6">Episodes</h2>
+      <h2 className="text-2xl font-bold mb-6">Locations</h2>
       <div className="space-y-6">
-        {isLoading && allEpisode.length === 0
+       
+        {isLoading && allLocation.length === 0
           ? Array.from({ length: 8 }).map((_, index) => (
               <div
                 key={index}
@@ -92,20 +91,20 @@ const AppEpisodes: React.FC = () => {
                 <Skeleton height={15} width="60%" />
               </div>
             ))
-          : episodesToDisplay && episodesToDisplay.length > 0
-          ? episodesToDisplay?.map((ep) => (
+          : locationToDisplay && locationToDisplay.length > 0
+          ? locationToDisplay?.map((loc) => (
               <div
-                key={ep.id}
+                key={loc.id}
                 className="border-b border-gray-700 pb-4 cursor-default"
               >
                 <a
                   href="#"
                   className="text-white font-medium hover:underline block text-lg"
                 >
-                  {ep.name}
+                  {loc.name}
                 </a>
                 <p className="text-[#79797D] text-sm">
-                  {ep.episode} - {ep.air_date}
+                  {loc.type} - {loc.dimension}
                 </p>
               </div>
             ))
@@ -125,4 +124,4 @@ const AppEpisodes: React.FC = () => {
   );
 };
 
-export default AppEpisodes;
+export default AppLocations;

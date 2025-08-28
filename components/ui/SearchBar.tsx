@@ -22,13 +22,13 @@ const SearchBar: React.FC<SearchBarProps> = ({ searchTerm, setSearchTerm, setPag
   }, [inputValue, searchTerm, setSearchTerm, setPage]);
 
   return (
-    <div className="relative max-w-md mx-autoo">
+    <div className="relative w-[300px] ">
       <input
         type="text"
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         placeholder="Search characters..."
-        className="w-full px-4 py-2 rounded-full bg-gray-700 text-white placeholder-gray-400 focus:outline-none "
+        className="w-full px-4 py-2 rounded-full border text-white placeholder-gray-400 focus:outline-none outline-none"
       />
       {inputValue && (
         <button
