@@ -19,7 +19,7 @@ const AppEpisodes: React.FC = () => {
     isError,
     error,
     refetch,
-  } = useGetEpisodeWithPaginationQuery(currentPage,{
+  } = useGetEpisodeWithPaginationQuery(currentPage, {
     refetchOnFocus: false,
     refetchOnReconnect: false,
   });
@@ -85,11 +85,12 @@ const AppEpisodes: React.FC = () => {
           ? Array.from({ length: 8 }).map((_, index) => (
               <div
                 key={index}
-                className="bg-slate-800 rounded-xl p-4 shadow-md"
+                className="border-b border-gray-700 pb-4 cursor-default"
               >
-                <Skeleton height={200} className="mb-4 rounded-lg" />
-                <Skeleton height={20} width="80%" className="mb-2" />
-                <Skeleton height={15} width="60%" />
+               
+                <Skeleton height={20} width="70%" className="mb-2 rounded-md" />
+      
+                <Skeleton height={14} width="40%" className="rounded-md" />
               </div>
             ))
           : episodesToDisplay && episodesToDisplay.length > 0

@@ -4,22 +4,22 @@ import React, { useState, useEffect } from 'react';
 interface SearchBarProps {
   searchTerm: string;
   setSearchTerm: (term: string) => void;
-  setPage: (page: number) => void;
+   
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ searchTerm, setSearchTerm, setPage }) => {
+const SearchBar: React.FC<SearchBarProps> = ({ searchTerm, setSearchTerm }) => {
   const [inputValue, setInputValue] = useState(searchTerm);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       if (inputValue !== searchTerm) {
         setSearchTerm(inputValue);
-        setPage(1);
+
       }
     }, 500);
 
     return () => clearTimeout(timer);
-  }, [inputValue, searchTerm, setSearchTerm, setPage]);
+  }, [inputValue, searchTerm, setSearchTerm]);
 
   return (
     <div className="relative w-[300px] ">
@@ -35,7 +35,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ searchTerm, setSearchTerm, setPag
           onClick={() => {
             setInputValue('');
             setSearchTerm('');
-            setPage(1);
+    
           }}
           className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white"
         >

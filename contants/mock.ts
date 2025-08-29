@@ -17,11 +17,11 @@ const speciesOptions = [
   { value: "all", label: "All Species" },
   { value: "human", label: "Human" },
   { value: "alien", label: "Alien" },
-  // { value: "animal", label: "Animal" },
-  // { value: "disease", label: "Disease" },
-  // { value: "robot", label: "Robot" },
-  // { value: "planet", label: "Planet" },
-  // { value: "cronenberg", label: "Cronenberg" },
+  { value: "animal", label: "Animal" },
+  { value: "disease", label: "Disease" },
+  { value: "robot", label: "Robot" },
+  { value: "planet", label: "Planet" },
+  { value: "cronenberg", label: "Cronenberg" },
   { value: "unknown", label: "Unknown" },
 ];
 

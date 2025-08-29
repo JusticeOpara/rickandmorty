@@ -59,8 +59,12 @@ interface ILocation {
   url: string;
   created: string;
 }
+type SearchParams = Record<string, string | string[] | undefined>;
 
-type ISortOption = "all" | "female" | "male" | "genderless" | "unknown";
+interface APIError {
+  status: number;
+  data?: { error: string };
+}
 
 export type {
   ICharacterAPIResponse,
@@ -68,8 +72,8 @@ export type {
   ICharacter,
   ICharacterLocation,
   IEpisodeAPIResponse,
-  ISortOption,
+SearchParams,
   ILocation,
   ILocationAPIResponse,
-  IEpisode
+  IEpisode,APIError
 };

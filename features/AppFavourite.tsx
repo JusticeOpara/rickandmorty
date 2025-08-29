@@ -50,8 +50,8 @@ const FavouritesPage: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-white flex items-center gap-2">
-            <Heart className="w-8 h-8 fill-current text-red-500" />
-            Favorite Characters
+            <Heart className="md:w-8 md:h-8 fill-current text-red-500" />
+          <span className="text-lg md:text-2xl">Favorite Characters</span>  
             <span className="text-teal-400 ml-2">({favorites.length})</span>
           </h1>
         </div>

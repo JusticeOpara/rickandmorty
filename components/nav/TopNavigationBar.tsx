@@ -1,10 +1,10 @@
 "use client";
 import React, { useState } from "react";
-import SearchBar from "../ui/SearchBar";
+
 import { MenuIcon, X, Home, Users, MapPin, Heart, Info, User } from "lucide-react";
 
 const TopNavigationBar: React.FC = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const menuItems = [
@@ -12,7 +12,7 @@ const TopNavigationBar: React.FC = () => {
     { icon: Users, label: "Characters", href: "/characters" },
     { icon: MapPin, label: "Locations", href: "/locations" },
     { icon: User, label: "Episodes", href: "/episodes" },
-    { icon: Heart, label: "Favorties", href: "/favourite" },
+    { icon: Heart, label: "Favorties", href: "/favourites" },
     { icon: Info, label: "About", href: "/about" },
   ];
 
@@ -31,13 +31,7 @@ const TopNavigationBar: React.FC = () => {
             </h1>
           </div>
 
-          <div className="hidden md:block">
-            <SearchBar
-              searchTerm={searchTerm}
-              setSearchTerm={setSearchTerm}
-              setPage={() => {}}
-            />
-          </div>
+         
 
           {/* Mobile Menu Button */}
           <div className="md:hidden">

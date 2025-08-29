@@ -21,7 +21,7 @@ interface MovieCardProps {
 const Card: React.FC<MovieCardProps> = ({
   id,
   title,
-  date,
+  // date,
   posterUrl,
   status,
   gender,
@@ -76,10 +76,10 @@ const Card: React.FC<MovieCardProps> = ({
         <div className="absolute bottom-0 left-0 right-0 p-4">
           <h2 className="text-white text-2xl font-semibold mb-3">{title}</h2>
 
-          <div className="flex items-center space-x-3">
-            <span className="bg-black bg-opacity-60 text-white text-sm px-2 py-1 rounded">
+          <div className="flex items-center gap-4">
+            {/* <span className="bg-black bg-opacity-60 text-white text-sm px-2 py-1 rounded">
               {new Date(date).toLocaleDateString()}
-            </span>
+            </span> */}
             <span
               className={`px-2 py-1 rounded text-xs font-medium ${
                 status === "Alive"
