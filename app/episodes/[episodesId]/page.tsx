@@ -1,9 +1,12 @@
+import { AppLayout } from '@/layout'
 import React from 'react'
 
-const page = () => {
+const EpisodesDetailsPage = () => {
   return (
-    <div>page</div>
+<AppLayout>
+      Episodes 
+    </AppLayout>
   )
 }
 
-export default page
+export default EpisodesDetailsPage

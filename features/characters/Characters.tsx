@@ -99,9 +99,9 @@ const AppCharacters = () => {
   }
 
   return (
-    <div className="p-8 min-h-screen h-full w-full">
-      <div className="max-w-7xl mx-auto">
-        {/* Filters */}
+    <div className=" min-h-screen w-full">
+  
+      
         <div className="flex flex-col md:flex-row gap-4 justify-end items-center mb-8">
           <div className="hidden md:block">
             <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
@@ -128,7 +128,7 @@ const AppCharacters = () => {
           />
         </div>
 
-        {/* Characters Grid */}
+     
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6">
           {isLoading && allCharacters.length === 0
             ? Array.from({ length: 8 }).map((_, index) => (
@@ -150,20 +150,21 @@ const AppCharacters = () => {
                   gender={data.gender}
                 />
               ))
-            : !isLoading && (
+            : !isLoading  && !isFetching && (
                 <div className="col-span-full text-center text-gray-400">
                   No characters found.
                 </div>
-              )}
+              )
+              }
         </div>
 
-        {/* Loader sentinel */}
+
         <div ref={loaderRef} className="h-16 flex items-center justify-center">
           {isFetching && (
             <span className="text-gray-400">Loading more characters...</span>
           )}
         </div>
-      </div>
+   
     </div>
   );
 };

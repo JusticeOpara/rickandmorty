@@ -1,17 +1,17 @@
 
 
-import AppLocation from "@/features/AppLocations";
+import Location from "@/features/locations/Locations";
 import { AppLayout } from "@/layout";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'Rick and Morty Locations',
-  description: 'Browse Rick and Morty Locations',
+  title: 'Rick and Morty Location',
+  description: 'Browse Rick and Morty Location',
 };
-export default function Favourite() {
+export default function LocationPage() {
   return (
     <AppLayout>
-      <AppLocation/>
+      <Location/>
     </AppLayout>
   );
 }

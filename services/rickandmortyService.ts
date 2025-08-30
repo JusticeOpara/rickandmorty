@@ -2,7 +2,9 @@ import { endpoints } from "@/utils";
 import { REQUEST_METHODS } from "@/contants";
 import { apiSlice } from "@/store";
 import {
+  ICharacter,
   ICharacterAPIResponse,
+  IEpisode,
   IEpisodeAPIResponse,
   ILocationAPIResponse,
 } from "@/types";
@@ -35,13 +37,7 @@ export const rickandmortyApiService = apiSlice.injectEndpoints({
       transformResponse: (response: ICharacterAPIResponse) => response,
     }),
 
-    // getCharacterWithPagination: builder.query<ICharacterAPIResponse, number>({
-    //   query: (page) => ({
-    //     url: endpoints.all_rickandmorty_character_paginated(page),
-    //     method: REQUEST_METHODS.GET,
-    //   }),
-    //   transformResponse: (response: ICharacterAPIResponse) => response,
-    // }),
+  
     getLocationWithPagination: builder.query<ILocationAPIResponse, number>({
       query: (page) => ({
         url: endpoints.all_locations_paginatied(page),
@@ -59,10 +55,17 @@ export const rickandmortyApiService = apiSlice.injectEndpoints({
     }),
 
     getCharacterById: builder.query({
-      query: (id) => `${endpoints.single_character}/${id}`,
+      query: (id) => endpoints.single_character(id),
+       transformResponse: (response: ICharacter) =>
+        response,
     }),
-    getEpisodesById: builder.query({
-      query: (id) => `${endpoints.single_episode}/${id}`,
+    getEpisodeById: builder.query({
+      query: (id) => endpoints.single_episode(id),
+       transformResponse: (response: IEpisode) =>
+        response,
+    }),
+     getLocationById: builder.query({
+      query: (id) => `${endpoints.single_location}/${id}`,
     }),
   }),
 });
@@ -72,5 +75,7 @@ export const {
   useGetCharacterWithPaginationQuery,
   useGetLocationWithPaginationQuery,
   useGetEpisodeWithPaginationQuery,
+  useGetEpisodeByIdQuery,
+  useGetLocationByIdQuery,
   useGetCharacterByIdQuery,
 } = rickandmortyApiService;

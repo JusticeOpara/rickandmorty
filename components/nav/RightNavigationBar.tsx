@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { thrones, rickandmorty, rickmortyshot } from '@/public/assets'
 import Image from 'next/image'
 
@@ -15,6 +15,7 @@ const RightNavigationBar: React.FC = () => {
           quality={100}
           priority
         />
+        
       </div>
     </div>
   )

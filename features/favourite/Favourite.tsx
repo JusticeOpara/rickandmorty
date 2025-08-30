@@ -46,7 +46,7 @@ const FavouritesPage: React.FC = () => {
   }
 
   return (
-    <div className="bg-[#0F1117] p-8 min-h-screen">
+    <div className=" min-h-screen">
       <div className="max-w-7xl mx-auto">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-white flex items-center gap-2">

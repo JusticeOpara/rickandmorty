@@ -8,8 +8,9 @@ import {
   toggleFavorite,
 } from "@/store/slices/favourite-slice";
 import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
 
-interface MovieCardProps {
+interface CardProps {
   id: number;
   title: string;
   date: string;
@@ -18,7 +19,7 @@ interface MovieCardProps {
   status: string;
 }
 
-const Card: React.FC<MovieCardProps> = ({
+const Card: React.FC<CardProps> = ({
   id,
   title,
   // date,
@@ -28,14 +29,19 @@ const Card: React.FC<MovieCardProps> = ({
 }) => {
   const dispatch = useDispatch();
   const isFavorite = useSelector(selectIsFavorite(id));
+  const { replace } = useRouter();
 
   const handleFavoriteClick = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     dispatch(toggleFavorite(id));
   };
+    const handleCardClick = () => {
+    replace(`/characters/${id}`); 
+  };
   return (
-    <div className="h-96 w-full rounded-xl overflow-hidden shadow-2xl relative">
+    <div className="h-96 w-full rounded-lg overflow-hidden shadow-2xl relative" 
+     onClick={handleCardClick}>
 
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -72,7 +78,7 @@ const Card: React.FC<MovieCardProps> = ({
           </button>
         </div>
 
-        {/* Content at bottom */}
+  
         <div className="absolute bottom-0 left-0 right-0 p-4">
           <h2 className="text-white text-2xl font-semibold mb-3">{title}</h2>
 

@@ -36,7 +36,7 @@ const MenuItem: React.FC<MenuItemProps> = ({ icon, label, href, isActive }) => (
 
 const LeftNavigationBar: React.FC = () => {
   const pathname = usePathname();
-  
+
   return (
     <div className="w-full h-screen bg-[#1A161F] flex flex-col">
       <div className="flex-1 mt-20 overflow-y-auto">
@@ -50,6 +50,18 @@ const LeftNavigationBar: React.FC = () => {
             label="Home"
             href="/"
             isActive={pathname === "/"}
+          />
+
+          <MenuItem
+            icon={
+              <Users
+                size={20}
+                fill={pathname === "/characters" ? "#881326" : "none"}
+              />
+            }
+            label="Characters"
+            href="/characters"
+            isActive={pathname === "/characters"}
           />
 
           <MenuItem

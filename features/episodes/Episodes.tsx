@@ -1,39 +1,40 @@
 "use client";
 
-import ErrorWithRetry from "@/components/common/ErrorWithRetry";
-import { useGetLocationWithPaginationQuery } from "@/services/rickandmortyService";
-import { ILocation } from "@/types";
-import { getRickAndMortyErrorMessage } from "@/utils/errorMessage";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useGetEpisodeWithPaginationQuery } from "@/services/rickandmortyService";
+import ErrorWithRetry from "@/components/common/ErrorWithRetry";
+import { getRickAndMortyErrorMessage } from "@/utils/errorMessage";
+import { IEpisode } from "@/types";
 import Skeleton from "react-loading-skeleton";
 
-const AppLocations: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState(1);
+const Episodes: React.FC = () => {
   const loaderRef = useRef<HTMLDivElement | null>(null);
-  const [allLocation, setAllLocation] = useState<ILocation[]>([]);
+  const [allEpisode, setAllEpisode] = useState<IEpisode[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+
   const {
-    data: rickandmortyLocations,
+    data: rickandmortyEpisodes,
     isLoading,
     isFetching,
     isError,
     error,
     refetch,
-  } = useGetLocationWithPaginationQuery(currentPage, {
+  } = useGetEpisodeWithPaginationQuery(currentPage, {
     refetchOnFocus: false,
     refetchOnReconnect: false,
   });
 
   useEffect(() => {
-    if (rickandmortyLocations?.results) {
-      setAllLocation((prev) => {
+    if (rickandmortyEpisodes?.results) {
+      setAllEpisode((prev) => {
         // Avoid duplicates when refetch triggers
-        const newOnes = rickandmortyLocations.results.filter(
+        const newOnes = rickandmortyEpisodes.results.filter(
           (ch) => !prev.some((p) => p.id === ch.id)
         );
         return [...prev, ...newOnes];
       });
     }
-  }, [rickandmortyLocations]);
+  }, [rickandmortyEpisodes]);
 
   const handleObserver = useCallback(
     (entries: IntersectionObserverEntry[]) => {
@@ -41,12 +42,12 @@ const AppLocations: React.FC = () => {
       if (
         target.isIntersecting &&
         !isFetching &&
-        rickandmortyLocations?.info?.next
+        rickandmortyEpisodes?.info?.next
       ) {
         setCurrentPage((prev) => prev + 1);
       }
     },
-    [isFetching, rickandmortyLocations]
+    [isFetching, rickandmortyEpisodes]
   );
 
   useEffect(() => {
@@ -59,10 +60,11 @@ const AppLocations: React.FC = () => {
     };
   }, [handleObserver]);
 
-  const locationToDisplay = useMemo(() => {
-    const episodes = rickandmortyLocations?.results;
+  const episodesToDisplay = useMemo(() => {
+    const episodes = rickandmortyEpisodes?.results;
+
     return episodes;
-  }, [rickandmortyLocations?.results]);
+  }, [rickandmortyEpisodes?.results]);
 
   if (isError) {
     return (
@@ -76,34 +78,35 @@ const AppLocations: React.FC = () => {
   }
 
   return (
-    <div className="bg-black text-white min-h-screen p-6">
-      <h2 className="text-2xl font-bold mb-6">Locations</h2>
+    <div className="text-white min-h-screen">
+      <h2 className="text-2xl font-bold mb-6">Episodes</h2>
       <div className="space-y-6">
-        {isLoading && allLocation.length === 0
+        {isLoading && allEpisode.length === 0
           ? Array.from({ length: 8 }).map((_, index) => (
               <div
                 key={index}
                 className="border-b border-gray-700 pb-4 cursor-default"
               >
+               
                 <Skeleton height={20} width="70%" className="mb-2 rounded-md" />
-
+      
                 <Skeleton height={14} width="40%" className="rounded-md" />
               </div>
             ))
-          : locationToDisplay && locationToDisplay.length > 0
-          ? locationToDisplay?.map((loc) => (
+          : episodesToDisplay && episodesToDisplay.length > 0
+          ? episodesToDisplay?.map((ep) => (
               <div
-                key={loc.id}
+                key={ep.id}
                 className="border-b border-gray-700 pb-4 cursor-default"
               >
                 <a
                   href="#"
                   className="text-white font-medium hover:underline block text-lg"
                 >
-                  {loc.name}
+                  {ep.name}
                 </a>
                 <p className="text-[#79797D] text-sm">
-                  {loc.type} - {loc.dimension}
+                  {ep.episode} - {ep.air_date}
                 </p>
               </div>
             ))
@@ -123,4 +126,4 @@ const AppLocations: React.FC = () => {
   );
 };
 
-export default AppLocations;
+export default Episodes;

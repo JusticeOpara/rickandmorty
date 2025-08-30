@@ -11,9 +11,9 @@ const AppLayout: React.FC<{
 }> = ({ children }) => {
   
   return (
-    <main className="flex w-full h-screen bg-[rgb(12,12,14)] text-white">
+    <main className="flex w-full h-screen bg-[#0C0C0E] text-white">
    
-      <aside className="w-[250px] border-r border-gray-800 bg-[#141820] flex-shrink-0 md:block hidden">
+      <aside className="w-[250px] border-r border-gray-800  flex-shrink-0 md:block hidden">
         <LeftNavigationBar />
       </aside>
 
@@ -24,11 +24,11 @@ const AppLayout: React.FC<{
           <TopNavigationBar  />
         </div>
 
-        <section className="flex-1 overflow-y-auto pp-6 ">{children}</section>
+        <section className="flex-1 overflow-y-auto w-full lg:p-16 p-4">{children}</section>
       </div>
 
 
-      <aside className="w-[400px] border-l border-gray-800  flex-shrink-0 md:block hidden">
+      <aside className="w-[400px] border-l border-gray-800  flex-shrink-0  hidden">
         <RightNavigationBar />
       </aside>
     </main>
