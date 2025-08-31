@@ -1,13 +1,14 @@
 # Rick and Morty
 
-A single-page React (Next.js + TypeScript) application that allows users to explore data from a public API with search, filter, sort, and favorites functionality.  
-Built for the **React Challenge** within a 24-hour timebox.
+![Alt text](./public/assets/rick-screenshot.png)
+
+A single-page React (Next.js + TypeScript) application that allows users to explore data from a public API with search, filter, sort, and favorites functionality.
 
 ---
 
 ## 🚀 Demo
 
-- **Live Preview**: [rickandmorty-neon-eta.vercel.app](optional if deployed)_
+- **Live Preview**: [rickandmorty-neon-eta.vercel.app]
 - **GitHub Repository**: [https://github.com/JusticeOpara/rickandmorty](https://github.com/JusticeOpara/rickandmorty)
 
 ---

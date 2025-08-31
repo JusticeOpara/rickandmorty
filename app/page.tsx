@@ -23,9 +23,9 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Main Grid */}
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
-            {/* Characters Card */}
+       
             <Link
             href={"/characters"} 
               className="group bg-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-700 overflow-hidden hover:border-green-400 hover:shadow-2xl hover:shadow-green-400/20 transition-all duration-300 cursor-pointer transform hover:scale-105"
@@ -55,7 +55,7 @@ export default function Home() {
               </div>
             </Link>
 
-            {/* Episodes Card */}
+      
             <Link
             href={"/episodes"} 
               className="group bg-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-700 overflow-hidden hover:border-green-400 hover:shadow-2xl hover:shadow-green-400/20 transition-all duration-300 cursor-pointer transform hover:scale-105"
@@ -85,7 +85,7 @@ export default function Home() {
               </div>
             </Link>
 
-            {/* Locations Card - spans full width */}
+          
             <Link
            href={"/locations"}  
               className="group md:col-span-2 bg-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-700 overflow-hidden hover:border-green-400 hover:shadow-2xl hover:shadow-green-400/20 transition-all duration-300 cursor-pointer transform hover:scale-105"
@@ -118,7 +118,7 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* Stats Section */}
+
           <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
             <div className="text-center p-6 bg-gray-800/30 rounded-lg border border-gray-700">
               <div className="text-3xl font-bold text-green-400 mb-2">800+</div>
