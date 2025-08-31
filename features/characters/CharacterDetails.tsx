@@ -4,7 +4,6 @@ import {
   useGetCharacterByIdQuery,
   useGetEpisodeByIdQuery,
 } from "@/services/rickandmortyService";
-import { Menu, Star } from "lucide-react";
 import { useParams } from "next/navigation";
 
 import React from "react";
@@ -30,38 +29,95 @@ const CharacterDetails = () => {
     episodeIds!,
     { skip: !episodeIds }
   );
-  console.log(characterById, "--singleCharacter");
+
   return (
     <div className=" text-white min-h-screen p-6">
       {/* Header */}
-      <header className="flex justify-between items-center mb-6">
-        <span className="text-xl font-bold">{characterById?.name}</span>
-        <Menu className="w-6 h-6" />
+      <header className="flex justify-between items-center mb-4">
+        <span className="text-2xl font-bold">{characterById?.name}</span>
       </header>
 
       <div className="flex md:flex-row flex-col gap-6">
-        <div className="flex-1 ">
+        <div className="flex-1">
           <div className="relative mb-8">
             <div
-              className="w-full h-96 bg-cover bg-center rounded-lg relative"
+              className="w-full h-96 bg-cover bg-center rounded-lg relative overflow-hidden"
               style={{
                 backgroundImage: characterById?.image
                   ? `url(${characterById.image})`
                   : undefined,
               }}
             >
-              <div className="absolute bottom-6 left-6">
-                <h1 className="text-4xl font-bold mb-2">
-                  {characterById?.name}
-                </h1>
-                <p className="text-gray-300 mb-4">{characterById?.status}</p>
+           
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
 
-                
-                <div>Episodes: {characterById?.episode.length} (2013 - 2021)</div>
-                <div>Status {characterById?.status}</div>
-                <div>Species {characterById?.species}</div>
-                <div>Origin {characterById?.origin?.name}</div>
-                <div>Location {characterById?.location?.name}</div>
+              <div className="absolute bottom-4 left-4 right-4">
+                <div className="backdrop-blur-md bg-white/10 rounded-xl border border-white/20 p-4 shadow-xl">
+           
+                  <h1 className="text-2xl font-bold mb-3 text-white drop-shadow-lg">
+                    {characterById?.name}
+                  </h1>
+
+        
+                  <div className="grid grid-cols-3 gap-2">
+    
+                    <div className="bg-white/15 backdrop-blur-sm rounded-lg p-2 border border-white/10">
+                      <div className="text-white/70 text-xs">Episodes</div>
+                      <div className="text-white font-semibold text-sm">
+                        {characterById?.episode.length}
+                      </div>
+                    </div>
+
+                 
+                    <div className="bg-white/15 backdrop-blur-sm rounded-lg p-2 border border-white/10">
+                      <div className="text-white/70 text-xs">Status</div>
+                      <div className="flex items-center gap-1">
+                        <div
+                          className={`w-1.5 h-1.5 rounded-full ${
+                            characterById?.status === "Alive"
+                              ? "bg-green-400"
+                              : characterById?.status === "Dead"
+                              ? "bg-red-400"
+                              : "bg-gray-400"
+                          }`}
+                        ></div>
+                        <div className="text-white font-semibold text-sm">
+                          {characterById?.status}
+                        </div>
+                      </div>
+                    </div>
+
+      
+                    <div className="bg-white/15 backdrop-blur-sm rounded-lg p-2 border border-white/10">
+                      <div className="text-white/70 text-xs">Species</div>
+                      <div className="text-white font-semibold text-sm">
+                        {characterById?.species}
+                      </div>
+                    </div>
+
+                   
+                    <div className="bg-white/15 backdrop-blur-sm rounded-lg p-2 border border-white/10 col-span-1">
+                      <div className="text-white/70 text-xs">Origin</div>
+                      <div
+                        className="text-white font-semibold text-xs truncate"
+                        title={characterById?.origin?.name}
+                      >
+                        {characterById?.origin?.name}
+                      </div>
+                    </div>
+
+             
+                    <div className="bg-white/15 backdrop-blur-sm rounded-lg p-2 border border-white/10 col-span-2">
+                      <div className="text-white/70 text-xs">Location</div>
+                      <div
+                        className="text-white font-semibold text-xs truncate"
+                        title={characterById?.location?.name}
+                      >
+                        {characterById?.location?.name}
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React from 'react'
 import { thrones, rickandmorty, rickmortyshot } from '@/public/assets'
 import Image from 'next/image'
 
