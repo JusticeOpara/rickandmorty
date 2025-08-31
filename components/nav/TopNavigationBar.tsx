@@ -27,7 +27,7 @@ const TopNavigationBar: React.FC = () => {
           {/* Navigation Tabs */}
           <div className="flex items-center space-x-8">
             <h1 className="lg:text-3xl font-medium text-white">
-              Rick and Morty Wiki
+               Rick and Morty Universe
             </h1>
           </div>
 
@@ -63,17 +63,17 @@ const TopNavigationBar: React.FC = () => {
             </div>
 
             {/* Menu Items */}
-            <div className="p-4">
+            <div className="p-4 hover:text-[#03B9AD] active:text-[#03B9AD]">
               {menuItems.map((item, index) => {
                 const IconComponent = item.icon;
                 return (
                   <a
                     key={index}
                     href={item.href}
-                    className="flex items-center space-x-3 px-4 py-4 text-white hover:bg-slate-800 rounded-lg transition-colors duration-200"
+                    className="flex items-center space-x-3 px-4 py-4 text-white hover:text-[#03B9AD]  transition-colors duration-200"
                     onClick={toggleMobileMenu}
                   >
-                    <IconComponent size={20} className="text-gray-400" />
+                    <IconComponent size={20} className="text-gray-400 hover:text-[#03B9AD]" />
                     <span className="text-base font-medium">{item.label}</span>
                   </a>
                 );

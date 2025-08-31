@@ -28,7 +28,7 @@ const MenuItem: React.FC<MenuItemProps> = ({ icon, label, href, isActive }) => (
         isActive ? "" : "text-gray-300 hover:text-white"
       }`}
     >
-      <span className={`${isActive ? "text-[#881326] " : ""}`}>{icon}</span>
+      <span className={`${isActive ? "text-[#03B9AD] " : ""}`}>{icon}</span>
       <span className="text-base font-light">{label}</span>
     </div>
   </Link>
@@ -45,7 +45,7 @@ const LeftNavigationBar: React.FC = () => {
 
           <MenuItem
             icon={
-              <Home size={20} fill={pathname === "/" ? "#881326" : "none"} />
+              <Home size={20} fill={pathname === "/" ? "#03B9AD" : "none"} />
             }
             label="Home"
             href="/"
@@ -56,7 +56,7 @@ const LeftNavigationBar: React.FC = () => {
             icon={
               <Users
                 size={20}
-                fill={pathname === "/characters" ? "#881326" : "none"}
+                fill={pathname === "/characters" ? "#03B9AD" : "none"}
               />
             }
             label="Characters"
@@ -68,7 +68,7 @@ const LeftNavigationBar: React.FC = () => {
             icon={
               <Users
                 size={20}
-                fill={pathname === "/episodes" ? "#881326" : "none"}
+                fill={pathname === "/episodes" ? "#03B9AD" : "none"}
               />
             }
             label="Episodes"
@@ -80,7 +80,7 @@ const LeftNavigationBar: React.FC = () => {
             icon={
               <LocateIcon
                 size={20}
-                fill={pathname === "/location" ? "#881326" : "none"}
+                fill={pathname === "/location" ? "#03B9AD" : "none"}
               />
             }
             label="Locations"
@@ -98,7 +98,7 @@ const LeftNavigationBar: React.FC = () => {
             icon={
               <Heart
                 size={20}
-                fill={pathname === "/favourites" ? "#881326" : "none"}
+                fill={pathname === "/favourites" ? "#03B9AD" : "none"}
               />
             }
             label="Favourite"
@@ -110,7 +110,7 @@ const LeftNavigationBar: React.FC = () => {
             icon={
               <Bookmark
                 size={20}
-                fill={pathname === "/bookmarked" ? "#881326" : "none"}
+                fill={pathname === "/bookmarked" ? "#03B9AD" : "none"}
               />
             }
             label="Bookmarked"
@@ -122,7 +122,7 @@ const LeftNavigationBar: React.FC = () => {
             icon={
               <Star
                 size={20}
-                fill={pathname === "/rating" ? "#881326" : "none"}
+                fill={pathname === "/rating" ? "#03B9AD" : "none"}
               />
             }
             label="Top rated"
@@ -136,7 +136,7 @@ const LeftNavigationBar: React.FC = () => {
             icon={
               <Settings
                 size={20}
-                fill={pathname === "/setting" ? "#881326" : "none"}
+                fill={pathname === "/setting" ? "#03B9AD" : "none"}
               />
             }
             label="Settings"
@@ -148,7 +148,7 @@ const LeftNavigationBar: React.FC = () => {
             icon={
               <Info
                 size={20}
-                fill={pathname === "/help" ? "#881326" : "none"}
+                fill={pathname === "/help" ? "#03B9AD" : "none"}
               />
             }
             label="Help"

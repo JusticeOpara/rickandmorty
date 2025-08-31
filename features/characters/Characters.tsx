@@ -99,7 +99,7 @@ const AppCharacters = () => {
   }
 
   return (
-    <div className=" min-h-screen w-full">
+    <div className="min-h-screen w-full">
   
       
         <div className="flex flex-col md:flex-row gap-4 justify-end items-center mb-8">
@@ -129,7 +129,7 @@ const AppCharacters = () => {
         </div>
 
      
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 2xl:gap-8 gap-6">
           {isLoading && allCharacters.length === 0
             ? Array.from({ length: 8 }).map((_, index) => (
                 <div key={index} className="bg-black rounded-xl p-4 shadow-md">
