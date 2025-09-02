@@ -2,13 +2,13 @@
 
 ![Alt text](./public/assets/rick-screenshot.png)
 
-A single-page React (Next.js + TypeScript) application that allows users to explore data from a public API with search, filter, sort, and favorites functionality.
+A  React (Next.js + TypeScript) application that allows users to explore data from a public API with search, filter, sort, and favorites functionality.
 
 ---
 
 ## 🚀 Demo
 
-- **Live Preview**: [rickandmorty-neon-eta.vercel.app]
+- **Live Preview**: [https://rickandmorty-universal.vercel.app]
 - **GitHub Repository**: [https://github.com/JusticeOpara/rickandmorty](https://github.com/JusticeOpara/rickandmorty)
 
 ---
@@ -18,7 +18,7 @@ A single-page React (Next.js + TypeScript) application that allows users to expl
 ### Must-Haves Implemented
 
 - **List + Detail View**:
-  - Paginated list view of items from the chosen API.
+  - Infinite Scroll of items from the API.
   - Click an item to open a dedicated detail route (`/items/:id`).
 - **Search, Filter, Sort**:
   - Debounced search (300ms) synced to the URL (`?q=query`).
@@ -38,7 +38,6 @@ A single-page React (Next.js + TypeScript) application that allows users to expl
 
 - **Client caching** with React Query for instant back/forward navigation.
 - **Optimistic UI** for favoriting actions.
-- **Theme toggle** (light/dark) persisted in `localStorage`.
 - **Code splitting** for the detail route.
 
 ---
@@ -56,4 +55,3 @@ A single-page React (Next.js + TypeScript) application that allows users to expl
 ---
 
 ## 📂 Project Structure
-
