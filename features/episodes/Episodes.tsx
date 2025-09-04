@@ -6,11 +6,13 @@ import ErrorWithRetry from "@/components/common/ErrorWithRetry";
 import { getRickAndMortyErrorMessage } from "@/utils/errorMessage";
 import { IEpisode } from "@/types";
 import Skeleton from "react-loading-skeleton";
+import { useRouter } from "next/navigation";
 
 const Episodes: React.FC = () => {
   const loaderRef = useRef<HTMLDivElement | null>(null);
   const [allEpisode, setAllEpisode] = useState<IEpisode[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const {replace} = useRouter()
 
   const {
     data: rickandmortyEpisodes,
@@ -65,6 +67,10 @@ const Episodes: React.FC = () => {
 
     return episodes;
   }, [rickandmortyEpisodes?.results]);
+  const handleClick = (id: number) => {
+    replace(`/episodes/${id}`);
+  }
+
 
   if (isError) {
     return (
@@ -97,6 +103,7 @@ const Episodes: React.FC = () => {
           ? episodesToDisplay?.map((ep) => (
               <div
                 key={ep.id}
+                onClick={() => handleClick(ep.id)}
                 className="border-b border-gray-700 pb-4 cursor-default"
               >
                 <a

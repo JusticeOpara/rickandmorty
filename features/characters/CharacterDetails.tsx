@@ -1,9 +1,11 @@
 "use client";
 
+import ErrorWithRetry from "@/components/common/ErrorWithRetry";
 import {
   useGetCharacterByIdQuery,
   useGetEpisodeByIdQuery,
 } from "@/services/rickandmortyService";
+import { getRickAndMortyErrorMessage } from "@/utils/errorMessage";
 import { useParams } from "next/navigation";
 
 import React from "react";
@@ -13,22 +15,71 @@ const CharacterDetails = () => {
 
   const characterId = Number(id);
 
-  const {
+  //Charater query
+    const {
     data: characterById,
-    isLoading,
-    error,
+    isLoading: charLoading,
+    isError: charError,
+    error: charErrorObj,
+    refetch: refetchCharacter,
   } = useGetCharacterByIdQuery(characterId, {
     skip: isNaN(characterId),
   });
 
+  // Episodes query
   const episodeIds = characterById?.episode
     ?.map((ep: string) => ep.split("/").pop())
     .join(",");
+  const {
+    data: episodes,
+    isLoading: epLoading,
+    isError: epError,
+    error: epErrorObj,
+    refetch: refetchEpisodes,
+  } = useGetEpisodeByIdQuery(episodeIds!, {
+    skip: !episodeIds,
+  });
 
-  const { data: episodes, isLoading: epLoading } = useGetEpisodeByIdQuery(
-    episodeIds!,
-    { skip: !episodeIds }
-  );
+  type FetchError = { status?: number };
+
+  /** ---- LOADING STATE ---- */
+  if (charLoading || epLoading) {
+    return (
+      <div className="bg-[#0F1117] p-8 min-h-screen flex items-center justify-center text-white">
+        <p className="animate-pulse text-lg">Loading...</p>
+      </div>
+    );
+  }
+
+  /** ---- ERROR STATE ---- */
+  if (
+    (charError && (charErrorObj as FetchError)?.status !== 404) ||
+    (epError && (epErrorObj as FetchError)?.status !== 404)
+  ) {
+    return (
+      <div className="bg-[#0F1117] p-8 min-h-screen flex items-center justify-center">
+        <ErrorWithRetry
+          message={
+            getRickAndMortyErrorMessage(charErrorObj || epErrorObj) ||
+            "Something went wrong"
+          }
+          onRetry={() => {
+            refetchCharacter();
+            refetchEpisodes();
+          }}
+        />
+      </div>
+    );
+  }
+
+  /** ---- EMPTY STATE ---- */
+  if (!characterById) {
+    return (
+      <div className="bg-[#0F1117] p-8 min-h-screen flex items-center justify-center text-gray-400">
+        Character not found
+      </div>
+    );
+  }
 
   return (
     <div className=" text-white min-h-screen p-6">
