@@ -6,6 +6,7 @@ import {
   ICharacterAPIResponse,
   IEpisode,
   IEpisodeAPIResponse,
+  ILocation,
   ILocationAPIResponse,
 } from "@/types";
 
@@ -65,7 +66,9 @@ export const rickandmortyApiService = apiSlice.injectEndpoints({
         response,
     }),
      getLocationById: builder.query({
-      query: (id) => `${endpoints.single_location}/${id}`,
+      query: (id) => endpoints.single_location(id),
+      transformResponse: (response: ILocation) =>
+        response,
     }),
   }),
 });

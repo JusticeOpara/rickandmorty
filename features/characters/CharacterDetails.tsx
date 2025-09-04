@@ -9,6 +9,7 @@ import { getRickAndMortyErrorMessage } from "@/utils/errorMessage";
 import { useParams } from "next/navigation";
 
 import React from "react";
+import Skeleton from "react-loading-skeleton";
 
 const CharacterDetails = () => {
   const { id } = useParams();
@@ -16,7 +17,7 @@ const CharacterDetails = () => {
   const characterId = Number(id);
 
   //Charater query
-    const {
+  const {
     data: characterById,
     isLoading: charLoading,
     isError: charError,
@@ -43,10 +44,61 @@ const CharacterDetails = () => {
   type FetchError = { status?: number };
 
   /** ---- LOADING STATE ---- */
+
   if (charLoading || epLoading) {
     return (
-      <div className="bg-[#0F1117] p-8 min-h-screen flex items-center justify-center text-white">
-        <p className="animate-pulse text-lg">Loading...</p>
+      <div className="bg-[#0F1117] p-8 min-h-screen text-white">
+        <header className="flex justify-between items-center mb-4">
+          <Skeleton
+            width={180}
+            height={28}
+            baseColor="#2a2a2a"
+            highlightColor="#3a3a3a"
+          />
+        </header>
+
+        <div className="flex md:flex-row flex-col gap-6">
+          <div className="flex-1">
+            <Skeleton
+              height={384}
+              borderRadius={12}
+              baseColor="#2a2a2a"
+              highlightColor="#3a3a3a"
+            />
+          </div>
+
+          <div className="bg-black text-white p-6 rounded-lg border border-gray-800 max-w-2xl flex-1">
+            <h1 className="text-3xl font-bold mb-6">
+              <Skeleton
+                width={150}
+                baseColor="#2a2a2a"
+                highlightColor="#3a3a3a"
+              />
+            </h1>
+
+            <div className="space-y-6">
+              {Array.from({ length: 4 }).map((_, i) => (
+                <div key={i}>
+                  <Skeleton
+                    width="60%"
+                    height={20}
+                    baseColor="#2a2a2a"
+                    highlightColor="#3a3a3a"
+                  />
+                  <Skeleton
+                    width="40%"
+                    height={16}
+                    baseColor="#2a2a2a"
+                    highlightColor="#3a3a3a"
+                  />
+                  {i < 3 && (
+                    <div className="border-b border-gray-700 my-4"></div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
@@ -83,7 +135,7 @@ const CharacterDetails = () => {
 
   return (
     <div className=" text-white min-h-screen p-6">
-      {/* Header */}
+ 
       <header className="flex justify-between items-center mb-4">
         <span className="text-2xl font-bold">{characterById?.name}</span>
       </header>
@@ -99,19 +151,15 @@ const CharacterDetails = () => {
                   : undefined,
               }}
             >
-           
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
 
               <div className="absolute bottom-4 left-4 right-4">
                 <div className="backdrop-blur-md bg-white/10 rounded-xl border border-white/20 p-4 shadow-xl">
-           
                   <h1 className="text-2xl font-bold mb-3 text-white drop-shadow-lg">
                     {characterById?.name}
                   </h1>
 
-        
                   <div className="grid grid-cols-3 gap-2">
-    
                     <div className="bg-white/15 backdrop-blur-sm rounded-lg p-2 border border-white/10">
                       <div className="text-white/70 text-xs">Episodes</div>
                       <div className="text-white font-semibold text-sm">
@@ -119,7 +167,6 @@ const CharacterDetails = () => {
                       </div>
                     </div>
 
-                 
                     <div className="bg-white/15 backdrop-blur-sm rounded-lg p-2 border border-white/10">
                       <div className="text-white/70 text-xs">Status</div>
                       <div className="flex items-center gap-1">
@@ -138,7 +185,6 @@ const CharacterDetails = () => {
                       </div>
                     </div>
 
-      
                     <div className="bg-white/15 backdrop-blur-sm rounded-lg p-2 border border-white/10">
                       <div className="text-white/70 text-xs">Species</div>
                       <div className="text-white font-semibold text-sm">
@@ -146,7 +192,6 @@ const CharacterDetails = () => {
                       </div>
                     </div>
 
-                   
                     <div className="bg-white/15 backdrop-blur-sm rounded-lg p-2 border border-white/10 col-span-1">
                       <div className="text-white/70 text-xs">Origin</div>
                       <div
@@ -157,7 +202,6 @@ const CharacterDetails = () => {
                       </div>
                     </div>
 
-             
                     <div className="bg-white/15 backdrop-blur-sm rounded-lg p-2 border border-white/10 col-span-2">
                       <div className="text-white/70 text-xs">Location</div>
                       <div

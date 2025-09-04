@@ -4,6 +4,7 @@ import ErrorWithRetry from "@/components/common/ErrorWithRetry";
 import { useGetLocationWithPaginationQuery } from "@/services/rickandmortyService";
 import { ILocation } from "@/types";
 import { getRickAndMortyErrorMessage } from "@/utils/errorMessage";
+import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 
@@ -22,6 +23,7 @@ const Locations: React.FC = () => {
     refetchOnFocus: false,
     refetchOnReconnect: false,
   });
+  const {replace} = useRouter()
 
   useEffect(() => {
     if (rickandmortyLocations?.results) {
@@ -60,9 +62,13 @@ const Locations: React.FC = () => {
   }, [handleObserver]);
 
   const locationToDisplay = useMemo(() => {
-    const episodes = rickandmortyLocations?.results;
-    return episodes;
+    const locations = rickandmortyLocations?.results;
+    return locations;
   }, [rickandmortyLocations?.results]);
+
+  const handleClick = (id: number) => {
+    replace(`/locations/${id}`);
+  }
 
   if (isError) {
     return (
@@ -94,6 +100,7 @@ const Locations: React.FC = () => {
           ? locationToDisplay?.map((loc) => (
               <div
                 key={loc.id}
+                onClick={() => handleClick(loc.id)}
                 className="border-b border-gray-700 pb-4 cursor-default"
               >
                 <a
